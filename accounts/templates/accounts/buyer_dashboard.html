@@ -1,0 +1,34 @@
+{% extends 'accounts/base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="hero-section">
+    <!-- <div class="hero-content">
+        
+        <p>Find your dream home with us.</p>
+        <form class="search-form">
+            <input type="text" placeholder="Search for properties...">
+            <button type="submit">Search</button>
+        </form>
+    </div> -->
+</div>
+<div class="listings-section" id="featured-listings">
+    <h2>Featured Listings</h2>
+    <div class="listings">
+        {% for listing in listings %}
+        <div class="listing-card">
+            <a href="{% url 'listing_detail' listing.id %}">
+                <img src="{{ listing.photo_main.url }}" alt="{{ listing.title }}">
+            </a>
+            
+            <div class="listing-info">
+                <h3>{{ listing.title }}</h3>
+                <p>{{ listing.description }}</p>
+                <a href="{% url 'listing_detail' listing.id %}" class="btn">View Details</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

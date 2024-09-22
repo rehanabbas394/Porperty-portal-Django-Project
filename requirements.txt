@@ -1,0 +1,19 @@
+asgiref==3.8.1
+Django==5.0.4
+pillow==10.3.0
+sqlparse==0.5.0
+tzdata==2024.1
+
+
+
+
+
+
+
+
+# for admin login
+# username = admin
+# password = ADMIN
+
+# seller  (username and password)= aa
+# buyer (username and password)= qq

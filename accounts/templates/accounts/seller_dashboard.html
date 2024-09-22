@@ -1,0 +1,98 @@
+{% extends 'accounts/base.html' %}
+
+{% block content %}
+<style>
+    /* Define styles for the listings */
+    .listings-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    .listing {
+        width: calc(33.33% - 15px); /* Three listings per row with spacing */
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 20px;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .listing img {
+        max-width: 100%;
+        height: auto;
+        margin-bottom: 10px;
+        border-radius: 8px;
+    }
+    .listing-info {
+        margin-bottom: 10px;
+    }
+    .listing-info p {
+        margin: 5px 0;
+    }
+    .listing-buttons {
+        margin-top: 10px;
+    }
+    .btn {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        text-decoration: none;
+        cursor: pointer;
+    }
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }
+    .btn-danger {
+        background-color: #dc3545;
+    }
+    .btn-danger:hover {
+        background-color: #c82333;
+    }
+    /* For smaller screens, display two listings per row */
+    @media screen and (max-width: 768px) {
+        .listing {
+            width: calc(50% - 20px); /* Two listings per row with spacing */
+        }
+    }
+    /* For even smaller screens, display one listing per row */
+    @media screen and (max-width: 480px) {
+        .listing {
+            width: calc(100% - 20px); /* One listing per row with spacing */
+        }
+    }
+</style>
+
+<!-- Add your Home page content here -->
+
+<a href="{% url 'add_listing' %}" class="btn btn-primary">Add Listing</a>
+
+<!-- Display listings available for sellers -->
+<div class="listings-container">
+    {% for listing in listings %}
+    <div class="listing">
+        <img src="{{ listing.photo_main.url }}" alt="Listing Image">
+        <div class="listing-info">
+            <p><strong>Title:</strong> {{ listing.title }}</p>
+            <p><strong>Description:</strong> {{ listing.description }}</p>
+            <p><strong>Price:</strong> {{ listing.price }}</p>
+            <p><strong>Address:</strong> {{ listing.address }}</p>
+            <p><strong>City:</strong> {{ listing.city }}</p>
+            <p><strong>State:</strong> {{ listing.state }}</p>
+            <p><strong>Zip Code:</strong> {{ listing.zip_code }}</p>
+            <p><strong>Bedrooms:</strong> {{ listing.bedrooms }}</p>
+            <p><strong>Bathrooms:</strong> {{ listing.bathrooms }}</p>
+            <p><strong>Square Feet:</strong> {{ listing.square_feet }}</p>
+            <p><strong>Year Built:</strong> {{ listing.year_built }}</p>
+        </div>
+        <div class="listing-buttons">
+            <a href="{% url 'edit_listing' listing.id %}" class="btn btn-primary">Edit</a>
+            <a href="{% url 'delete_listing' listing.id %}" class="btn btn-danger">Delete</a>
+        </div>
+    </div>
+    {% endfor %}
+</div> 
+
+{% endblock %}
